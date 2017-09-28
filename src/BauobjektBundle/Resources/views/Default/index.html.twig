@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+{% block body %}
+    {{ block('fos_user_content') }}
+    {% if is_granted('ROLE_USER') %}
+        <a href="logout">Logout</a>
+        <br>
+        <h2>Meine Projekte</h2>
+        <a href="">Übersicht meiner Bauobjekt</a>
+        <br>
+        <a href="">Anfrage senden</a>
+        <br>
+    {% else %}
+        <a href="login">Login</a>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <h2>Administration</h2>
+        <a href="register">Benutzer anlegen</a>
+        <br>
+        <a href="">Übersicht aller Bauobjekt</a>
+        <br>
+    {% endif %}
+{% endblock %}
+</body>
+</html>
+
