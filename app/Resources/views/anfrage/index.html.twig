@@ -1,0 +1,43 @@
+{% block body %}
+    <h1>Anfrages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Beschreibung</th>
+                <th>Menge</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for anfrage in anfrages %}
+            <tr>
+                <td><a href="{{ path('anfrage_show', { 'id': anfrage.id }) }}">{{ anfrage.id }}</a></td>
+                <td>{{ anfrage.beschreibung }}</td>
+                <td>{{ anfrage.menge }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('anfrage_show', { 'id': anfrage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('anfrage_edit', { 'id': anfrage.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('anfrage_new') }}">Create a new anfrage</a>
+        </li>
+    </ul>
+
+    <div>
+        <a style="margin: 20px" class="waves-effect waves-light btn" href="/../bauvorhaben/web/">Hauptmenü</a>
+    </div>
+{% endblock %}

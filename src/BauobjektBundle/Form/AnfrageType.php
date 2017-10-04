@@ -7,7 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BestellungType extends AbstractType
+class AnfrageType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -16,7 +16,10 @@ class BestellungType extends AbstractType
     {
         $builder->add('beschreibung')->add('menge')->add('submit', SubmitType::class, array(
             'label' => 'Speichern',
-            'attr' => array('class' =>'waves-effect waves-light btn')
+            'attr' => array(
+                'class' => 'waves-effect waves-light btn',
+                'style' => 'margin: 20px'
+                )
         ));
     }
     
@@ -26,7 +29,7 @@ class BestellungType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BauobjektBundle\Entity\Bestellung'
+            'data_class' => 'BauobjektBundle\Entity\Anfrage'
         ));
     }
 
@@ -35,7 +38,7 @@ class BestellungType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'bauobjektbundle_bestellung';
+        return 'bauobjektbundle_anfrage';
     }
 
 

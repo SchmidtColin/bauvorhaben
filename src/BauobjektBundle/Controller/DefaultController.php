@@ -2,8 +2,8 @@
 
 namespace BauobjektBundle\Controller;
 
-use BauobjektBundle\Entity\Bestellung;
-use BauobjektBundle\Form\BestellungType;
+use BauobjektBundle\Entity\Anfrage;
+use BauobjektBundle\Form\AnfrageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,23 +19,33 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/anfrage")
+     * @Route("/anfragen")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function anfrageAction(Request $request)
     {
-        $bestellung = new Bestellung();
+        $anfrage = new Anfrage();
 
-        $form = $this->createForm( BestellungType::class, $bestellung);
+        $form = $this->createForm( AnfrageType::class, $anfrage);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $bestellung = $form->getData();
+            $anfrage = $form->getData();
             $em = $this->getDoctrine()->getManager();
-            $em->persist($bestellung);
+            $em->persist($anfrage);
             $em->flush();
         }
-
-        return $this->render('BauobjektBundle:Default:anfrage.html.twig', array('form' => $form->createView(),));
+        return $this->render('BauobjektBundle:Default:anfrage.html.twig', array('form' => $form->createView()));
     }
+
+    /**
+     * @Route("/anfrageBestaetigen")
+     */
+    public function anfrageBestaetigenAction()
+    {
+        return $this->render('BauobjektBundle:Default:anfrageBestaetigen.html.twig');
+    }
+
 }

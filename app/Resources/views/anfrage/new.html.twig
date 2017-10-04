@@ -1,0 +1,18 @@
+{% block body %}
+    <h1>Anfrage creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('anfrage_index') }}">Back to the list</a>
+        </li>
+    </ul>
+
+    <div>
+        <a style="margin: 20px" class="waves-effect waves-light btn" href="/../bauvorhaben/web/">Hauptmenü</a>
+    </div>
+{% endblock %}

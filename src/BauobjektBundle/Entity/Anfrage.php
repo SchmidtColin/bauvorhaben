@@ -5,12 +5,12 @@ namespace BauobjektBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Bestellung
+ * Anfrage
  *
- * @ORM\Table(name="bauobjekt")
- * @ORM\Entity(repositoryClass="BauobjektBundle\Repository\BauobjektRepository")
+ * @ORM\Table(name="anfrage")
+ * @ORM\Entity(repositoryClass="BauobjektBundle\Repository\AnfrageRepository")
  */
-class Bestellung
+class Anfrage
 {
     /**
      * @var int
@@ -29,9 +29,9 @@ class Bestellung
     private $beschreibung;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="Menge", type="integer")
+     * @ORM\Column(name="Menge", type="string", length=255)
      */
     private $menge;
 
@@ -51,7 +51,7 @@ class Bestellung
      *
      * @param string $beschreibung
      *
-     * @return Bestellung
+     * @return Anfrage
      */
     public function setBeschreibung($beschreibung)
     {
@@ -73,9 +73,9 @@ class Bestellung
     /**
      * Set menge
      *
-     * @param integer $menge
+     * @param string $menge
      *
-     * @return Bestellung
+     * @return Anfrage
      */
     public function setMenge($menge)
     {
@@ -87,7 +87,7 @@ class Bestellung
     /**
      * Get menge
      *
-     * @return int
+     * @return string
      */
     public function getMenge()
     {

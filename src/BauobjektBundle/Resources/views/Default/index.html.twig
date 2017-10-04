@@ -13,22 +13,24 @@
 {% block body %}
     {{ block('fos_user_content') }}
     {% if is_granted('ROLE_USER') %}
-        <a href="logout">Logout</a>
+        <a style="margin: 20px" class="waves-effect waves-light btn" href="logout">Logout</a>
         <br>
         <h2>Meine Projekte</h2>
-        <a href="">Übersicht meiner Bauobjekt</a>
+        <a style="margin: 20px" class="waves-effect waves-light btn" href="">Übersicht meiner Bauobjekt</a>
         <br>
-        <a href="anfrage">Anfrage senden</a>
+        <a style="margin: 20px" class="waves-effect waves-light btn" href="anfrage">Meine Anfragen</a>
         <br>
     {% else %}
-        <a href="login">Login</a>
+        <a style="margin: 20px" class="waves-effect waves-light btn" href="login">Login</a>
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
         <h2>Administration</h2>
-        <a href="register">Benutzer anlegen</a>
+        <a style="margin: 20px" class="waves-effect waves-light btn" href="register">Benutzer anlegen</a>
         <br>
-        <a href="">Übersicht aller Bauobjekt</a>
+        <a style="margin: 20px" class="waves-effect waves-light btn" href="">Übersicht aller Bauobjekt</a>
+        <br>
+        <a style="margin: 20px" class="waves-effect waves-light btn" href="anfrageBestaetigen">Übersicht aller Bestellungen</a>
         <br>
     {% endif %}
 {% endblock %}
