@@ -44,6 +44,7 @@ class AnfrageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $anfrage->setFkUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($anfrage);
             $em->flush();

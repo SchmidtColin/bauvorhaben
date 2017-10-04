@@ -7,38 +7,45 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Anfrage
  *
- * @ORM\Table(name="anfrage")
- * @ORM\Entity(repositoryClass="BauobjektBundle\Repository\AnfrageRepository")
+ * @ORM\Table(name="anfrage", uniqueConstraints={@ORM\UniqueConstraint(name="fk_user_id", columns={"fk_user_id"})})
+ * @ORM\Entity
  */
 class Anfrage
 {
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Beschreibung", type="string", length=255)
+     * @ORM\Column(name="Beschreibung", type="string", length=255, nullable=false)
      */
     private $beschreibung;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Menge", type="string", length=255)
+     * @ORM\Column(name="Menge", type="string", length=255, nullable=false)
      */
     private $menge;
 
+    /**
+     * @var \BauobjektBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="BauobjektBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fk_user_id", referencedColumnName="id")
+     * })
+     */
+    private $fkUser;
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -47,22 +54,6 @@ class Anfrage
     }
 
     /**
-     * Set beschreibung
-     *
-     * @param string $beschreibung
-     *
-     * @return Anfrage
-     */
-    public function setBeschreibung($beschreibung)
-    {
-        $this->beschreibung = $beschreibung;
-
-        return $this;
-    }
-
-    /**
-     * Get beschreibung
-     *
      * @return string
      */
     public function getBeschreibung()
@@ -71,27 +62,45 @@ class Anfrage
     }
 
     /**
-     * Set menge
-     *
-     * @param string $menge
-     *
-     * @return Anfrage
+     * @param string $beschreibung
      */
-    public function setMenge($menge)
+    public function setBeschreibung($beschreibung)
     {
-        $this->menge = $menge;
-
-        return $this;
+        $this->beschreibung = $beschreibung;
     }
 
     /**
-     * Get menge
-     *
      * @return string
      */
     public function getMenge()
     {
         return $this->menge;
     }
+
+    /**
+     * @param string $menge
+     */
+    public function setMenge($menge)
+    {
+        $this->menge = $menge;
+    }
+
+    /**
+     * @param User $fkUser
+     */
+    public function setFkUser($fkUser)
+    {
+        $this->fkUser = $fkUser;
+    }
+
+    /**
+     * @return User
+     */
+    public function getFkUser()
+    {
+        return $this->fkUser;
+    }
+
+
 }
 
