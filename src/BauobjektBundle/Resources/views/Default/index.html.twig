@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </head>
 <body>
 {% block body %}
@@ -12,7 +18,7 @@
         <h2>Meine Projekte</h2>
         <a href="">Übersicht meiner Bauobjekt</a>
         <br>
-        <a href="">Anfrage senden</a>
+        <a href="anfrage">Anfrage senden</a>
         <br>
     {% else %}
         <a href="login">Login</a>

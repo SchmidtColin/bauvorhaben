@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+<body>
+{% block body %}
+    {{ block('fos_user_content') }}
+    {% if is_granted('ROLE_USER') %}
+        <h2>Anfrage abgeben:</h2>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% else %}
+        <a href="login">Login</a>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <h2>Anfrage bestätigen:</h2>
+    {% endif %}
+
+        <div>
+                <a class="waves-effect waves-light btn" href="/../bauvorhaben/web/" >Hauptmenü</a>
+        </div>
+{% endblock %}
+</body>
+</html>
+
