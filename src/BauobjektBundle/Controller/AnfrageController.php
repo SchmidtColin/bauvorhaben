@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class AnfrageController extends Controller
 {
     /**
-     * Lists all anfrage entities.
+     * Lists users anfrage entities.
      *
      * @Route("/", name="anfrage_index")
      * @Method("GET")
@@ -24,7 +24,24 @@ class AnfrageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $anfrages = $em->getRepository('BauobjektBundle:Anfrage')->findAll();
+        $anfrages = $em->getRepository('BauobjektBundle:Anfrage')->findByUser($this->getUser());
+
+        return $this->render('anfrage/index.html.twig', array(
+            'anfrages' => $anfrages,
+        ));
+    }
+
+    /**
+     * Lists all anfrage entities.
+     *
+     * @Route("/admin", name="anfrageAdmin_index")
+     * @Method("GET")
+     */
+    public function indexAdminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $anfrages = $em->getRepository('BauobjektBundle:Anfrage')->findAll($this->getUser());
 
         return $this->render('anfrage/index.html.twig', array(
             'anfrages' => $anfrages,

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Anfrage
  *
  * @ORM\Table(name="anfrage", uniqueConstraints={@ORM\UniqueConstraint(name="fk_user_id", columns={"fk_user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BauobjektBundle\Repository\AnfrageRepository")
  */
 class Anfrage
 {
