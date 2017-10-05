@@ -13,15 +13,9 @@ class DefaultController extends Controller
  */
     public function indexAction()
     {
-        return $this->render('BauobjektBundle:Default:index.html.twig');
+        $user = $this->getUser();
+        return $this->render('BauobjektBundle:Default:index.html.twig', array(
+            'user' => $user
+        ));
     }
-
-    /**
-     * @Route("/anfrageBestaetigen")
-     */
-    public function anfrageBestaetigenAction()
-    {
-        return $this->render('BauobjektBundle:Default:anfrageBestaetigen.html.twig');
-    }
-
 }

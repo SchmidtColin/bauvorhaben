@@ -77,3 +77,9 @@ fos_user:
     from_email:
         address: "foo@test.de"
         sender_name: "foo"
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~

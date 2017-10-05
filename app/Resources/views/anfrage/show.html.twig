@@ -1,12 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+<body>
 {% block body %}
     <h1>Anfrage</h1>
 
     <table>
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ anfrage.id }}</td>
-            </tr>
             <tr>
                 <th>Beschreibung</th>
                 <td>{{ anfrage.beschreibung }}</td>
@@ -18,21 +29,23 @@
         </tbody>
     </table>
 
+    {{ form_start(delete_form) }}
+    <input style="margin: 20px" class="waves-effect waves-light btn" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+
     <ul>
         <li>
-            <a href="{{ path('anfrage_index') }}">Back to the list</a>
+            <a style="margin: 20px" class="waves-effect waves-light btn" href="{{ path('anfrage_edit', { 'id': anfrage.id }) }}">Edit</a>
         </li>
         <li>
-            <a href="{{ path('anfrage_edit', { 'id': anfrage.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a style="margin: 20px" class="waves-effect waves-light btn" href="{{ path('anfrage_index') }}">Back to the list</a>
+
+            <a style="margin: 20px" class="waves-effect waves-light btn" href="/../bauvorhaben/web/">Hauptmenü</a>
         </li>
     </ul>
 
     <div>
-        <a style="margin: 20px" class="waves-effect waves-light btn" href="/../bauvorhaben/web/">Hauptmenü</a>
+
     </div>
 {% endblock %}
+</body>

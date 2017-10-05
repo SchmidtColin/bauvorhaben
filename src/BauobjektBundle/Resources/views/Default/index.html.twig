@@ -2,36 +2,30 @@
 <html>
 <head>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-
-    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ asset('bundles/bauobjekt/web/index.css') }}">
 
-    <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </head>
 <body>
 {% block body %}
     {{ block('fos_user_content') }}
+    <br>
     {% if is_granted('ROLE_USER') %}
-        <a style="margin: 20px" class="waves-effect waves-light btn" href="logout">Logout</a>
-        <br>
-        <h2>Meine Projekte</h2>
-        <a style="margin: 20px" class="waves-effect waves-light btn" href="">Übersicht meiner Bauobjekt</a>
-        <br>
-        <a style="margin: 20px" class="waves-effect waves-light btn" href="anfrage">Meine Anfragen</a>
-        <br>
+        <h2>Sie sind angemeldet als: {{ user }}</h2>
+        <a class="waves-effect waves-light btn" href="{{ path('fos_user_security_logout') }}">Logout</a>
+        <h4>Meine Projekte</h4>
+        <a class="waves-effect waves-light btn" href="">Übersicht meiner Bauobjekt</a>
+        <a  class="waves-effect waves-light btn" href="{{ path('anfrage_index') }}">Meine Anfragen</a>
     {% else %}
-        <a style="margin: 20px" class="waves-effect waves-light btn" href="login">Login</a>
+        <a  class="waves-effect waves-light btn" href="{{ path('fos_user_security_login') }}">Zum internen Bereich</a>
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
-        <h2>Administration</h2>
-        <a style="margin: 20px" class="waves-effect waves-light btn" href="register">Benutzer anlegen</a>
-        <br>
-        <a style="margin: 20px" class="waves-effect waves-light btn" href="">Übersicht aller Bauobjekt</a>
-        <br>
-        <a style="margin: 20px" class="waves-effect waves-light btn" href="anfrage/admin">Übersicht aller Bestellungen</a>
-        <br>
+        <h4>Administration</h4>
+        <a  class="waves-effect waves-light btn" href="{{ path('fos_user_registration_register') }}">Benutzer anlegen</a>
+        <a  class="waves-effect waves-light btn" href="">Übersicht aller Bauobjekt</a>
+        <a  class="waves-effect waves-light btn" href="{{ path('anfrageAdmin_index') }}">Übersicht aller Bestellungen</a>
     {% endif %}
 {% endblock %}
 </body>

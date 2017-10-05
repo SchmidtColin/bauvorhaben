@@ -1,21 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+<body>
 {% block body %}
-    <h1>Anfrages list</h1>
+    <h1>Anfragen</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Beschreibung</th>
                 <th>Menge</th>
                 <th>Actions</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>Benutzer</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
         {% for anfrage in anfrages %}
             <tr>
-                <td><a href="{{ path('anfrage_show', { 'id': anfrage.id }) }}">{{ anfrage.id }}</a></td>
                 <td>{{ anfrage.beschreibung }}</td>
                 <td>{{ anfrage.menge }}</td>
+
                 <td>
                     <ul>
                         <li>
@@ -26,6 +43,9 @@
                         </li>
                     </ul>
                 </td>
+                {% if is_granted('ROLE_ADMIN') %}
+                <td>{{ anfrage.fkUser }}</td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
@@ -33,11 +53,13 @@
 
     <ul>
         <li>
-            <a href="{{ path('anfrage_new') }}">Create a new anfrage</a>
+            <a style="margin: 20px" class="waves-effect waves-light btn" href="{{ path('anfrage_new') }}">Create a new anfrage</a>
+            <a style="margin: 20px" class="waves-effect waves-light btn" href="/../bauvorhaben/web/">Hauptmenü</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a  class="waves-effect waves-light btn" href="{{ path('anfrageAdmin_index') }}">Übersicht aller Bestellungen</a>
+            {% endif %}
         </li>
     </ul>
 
-    <div>
-        <a style="margin: 20px" class="waves-effect waves-light btn" href="/../bauvorhaben/web/">Hauptmenü</a>
-    </div>
 {% endblock %}
+</body>
