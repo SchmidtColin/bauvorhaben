@@ -2,31 +2,109 @@
 <html>
 <head>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('bundles/bauobjekt/web/index.css') }}">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>
+
+
 </head>
 <body>
 {% block body %}
     {{ block('fos_user_content') }}
     <br>
     {% if is_granted('ROLE_USER') %}
-        <h2>Sie sind angemeldet als: {{ user }}</h2>
-        <a class="waves-effect waves-light btn" href="{{ path('fos_user_security_logout') }}">Logout</a>
-        <h4>Meine Projekte</h4>
-        <a class="waves-effect waves-light btn" href="">Übersicht meiner Bauobjekt</a>
-        <a  class="waves-effect waves-light btn" href="{{ path('anfrage_index') }}">Meine Anfragen</a>
+    <h2 style="margin-left: 25%">Sie sind angemeldet als: {{ user }}</h2>
+
+    <div class="row">
+        <div class="col s3">
+            <h4>Meine Projekte</h4>
+            <ul class="collapsible" data-collapsible="expandable">
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">home</i>
+                        Meine Bauobjekte
+                        <span class="new badge">4</span></div>
+                    <div class="collapsible-body"><a href="#!" class="collection-item">Übersicht</a></div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">content_paste</i>
+                        Meine Anfragen
+                        <span class="new badge">4</span></div>
+                    <div class="collapsible-body">
+                        <div style="margin: 5px"><a style="cursor: pointer;" onclick="loadData('{{ path('anfrage_index') }}')"
+                                                    class="collection-item">Übersicht</a>
+                        </div>
+                        <div style="margin: 5px"><a style="cursor: pointer;" href="{{ path('anfrage_new') }}"
+                                                    class="collection-item">Erstellen</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <h4>Administration</h4>
+                <ul class="collapsible" data-collapsible="expandable">
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">group</i>
+                            Benutzer
+                            <span class="new badge">4</span></div>
+                        <div class="collapsible-body"><a href="{{ path('fos_user_registration_register') }}"
+                                                         class="collection-item">Benutzer anlegen</a></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">home</i>
+                            Bauobjekte
+                            <span class="new badge">4</span></div>
+                        <div class="collapsible-body"><a href="#!" class="collection-item">Übersicht</a></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">content_paste</i>
+                            Anfragen
+                            <span class="new badge">4</span></div>
+                        <div class="collapsible-body">
+                            <a style="cursor: pointer;" onclick="loadData('{{ path('anfrageAdmin_index') }}')" class="collection-item">Übersicht</a>
+                        </div>
+
+                    </li>
+                </ul>
+            {% endif %}
+
+            <a class="waves-effect waves-light btn" href="{{ path('fos_user_security_logout') }}"><i
+                        class="material-icons left">cloud_off</i>Logout</a>
+        </div>
+        <div class="col s9">
+            <!-- Teal page content  -->
+            <div id="demo"></div>
+        </div>
+    </div>
+
     {% else %}
-        <a  class="waves-effect waves-light btn" href="{{ path('fos_user_security_login') }}">Zum internen Bereich</a>
+    <a class="waves-effect waves-light btn" href="{{ path('fos_user_security_login') }}">Zum internen Bereich</a>
     {% endif %}
 
-    {% if is_granted('ROLE_ADMIN') %}
-        <h4>Administration</h4>
-        <a  class="waves-effect waves-light btn" href="{{ path('fos_user_registration_register') }}">Benutzer anlegen</a>
-        <a  class="waves-effect waves-light btn" href="">Übersicht aller Bauobjekt</a>
-        <a  class="waves-effect waves-light btn" href="{{ path('anfrageAdmin_index') }}">Übersicht aller Bestellungen</a>
-    {% endif %}
+
+
+    <script type="text/javascript">
+        function loadData(text) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("demo").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", text, true);
+            xhttp.send();
+        }
+    </script>
 {% endblock %}
 </body>
 </html>

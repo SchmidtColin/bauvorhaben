@@ -66,7 +66,7 @@ class AnfrageController extends Controller
             $em->persist($anfrage);
             $em->flush();
 
-            return $this->redirectToRoute('anfrage_show', array('id' => $anfrage->getId()));
+            return $this->redirectToRoute('bauobjekt_default_index');
         }
 
         return $this->render('anfrage/new.html.twig', array(

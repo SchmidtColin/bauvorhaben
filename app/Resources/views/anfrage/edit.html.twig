@@ -5,29 +5,24 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-
-    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </head>
 <body>
 {% block body %}
     <h1>Anfrage ändern</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input style="margin: 20px" class="waves-effect waves-light btn" type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    {{ form_start(delete_form) }}
-    <input style="margin: 20px" class="waves-effect waves-light btn" type="submit" value="Delete">
-    {{ form_end(delete_form) }}
-
     <ul>
         <li>
-            <a style="margin: 20px" class="waves-effect waves-light btn" href="{{ path('anfrage_index') }}">Back to the list</a>
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input style="margin: 20px" class="waves-effect waves-light btn" type="submit" value="Edit"/>
+            {{ form_end(edit_form) }}
+
+            {{ form_start(delete_form) }}
+            <input style="margin: 20px" class="waves-effect waves-light btn" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+            <a style="margin: 20px" class="waves-effect waves-light btn" href="{{ path('anfrage_index') }}">Back to the
+                list</a>
             <a style="margin: 20px" class="waves-effect waves-light btn" href="/../bauvorhaben/web/">Hauptmenü</a>
         </li>
     </ul>

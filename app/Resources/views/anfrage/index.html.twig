@@ -14,7 +14,7 @@
 </head>
 <body>
 {% block body %}
-    <h1>Anfragen</h1>
+    <h4>Anfragen</h4>
 
     <table>
         <thead>
@@ -36,9 +36,6 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('anfrage_show', { 'id': anfrage.id }) }}">show</a>
-                        </li>
-                        <li>
                             <a href="{{ path('anfrage_edit', { 'id': anfrage.id }) }}">edit</a>
                         </li>
                     </ul>
@@ -50,16 +47,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a style="margin: 20px" class="waves-effect waves-light btn" href="{{ path('anfrage_new') }}">Create a new anfrage</a>
-            <a style="margin: 20px" class="waves-effect waves-light btn" href="/../bauvorhaben/web/">Hauptmenü</a>
-            {% if is_granted('ROLE_ADMIN') %}
-                <a  class="waves-effect waves-light btn" href="{{ path('anfrageAdmin_index') }}">Übersicht aller Bestellungen</a>
-            {% endif %}
-        </li>
-    </ul>
-
 {% endblock %}
 </body>
