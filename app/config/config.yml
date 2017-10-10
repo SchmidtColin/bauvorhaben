@@ -83,3 +83,19 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+
+easy_admin:
+    site_name: 'Benutzerverwaltung'
+    entities:
+        User:
+            class: BauobjektBundle\Entity\User
+            form:
+                fields:
+                    - username
+                    - email
+                    - enabled
+                    # if administrators are allowed to edit users' passwords and roles, add this:
+                    - { property: 'plainPassword', type: 'text', type_options: { required: false } }
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+        Anfrage:
+            class: BauobjektBundle\Entity\Anfrage
