@@ -3,6 +3,7 @@
 namespace BauobjektBundle\Controller;
 
 use BauobjektBundle\Entity\Anfrage;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -116,6 +117,7 @@ class AnfrageController extends Controller
         ));
     }
 
+
     /**
      * Deletes a anfrage entity.
      *
@@ -133,7 +135,7 @@ class AnfrageController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('anfrage_index');
+        return $this->redirectToRoute('bauobjekt_default_index');
     }
 
     /**

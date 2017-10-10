@@ -21,6 +21,7 @@
             <tr>
                 <th>Beschreibung</th>
                 <th>Menge</th>
+                <th>Bemerkung</th>
                 <th>Actions</th>
                 {% if is_granted('ROLE_ADMIN') %}
                 <th>Benutzer</th>
@@ -30,9 +31,9 @@
         <tbody>
         {% for anfrage in anfrages %}
             <tr>
-                <td>{{ anfrage.beschreibung }}</td>
+                <td>{{ anfrage.bestellung }}</td>
                 <td>{{ anfrage.menge }}</td>
-
+                <td>{{ anfrage.bemerkung }}</td>
                 <td>
                     <ul>
                         <li>

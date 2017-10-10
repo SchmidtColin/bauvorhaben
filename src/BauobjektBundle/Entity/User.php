@@ -21,6 +21,5 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
-
 }
 

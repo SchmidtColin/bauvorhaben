@@ -13,7 +13,7 @@ class AnfrageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('beschreibung')->add('menge');
+        $builder->add('bestellung')->add('menge')->add('bemerkung');
     }
     
     /**

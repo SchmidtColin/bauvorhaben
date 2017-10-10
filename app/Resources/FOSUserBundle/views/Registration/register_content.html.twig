@@ -1,12 +1,18 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+{% if is_granted('ROLE_ADMIN') %}
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
     {{ form_widget(form) }}
-<div>
-    <input class="waves-effect waves-light btn" type="submit" value="{{ 'registration.submit'|trans }}" />
-</div>
-<br>
-<div>
-    <a class="waves-effect waves-light btn" href="/../bauvorhaben/web/" >Hauptmenü</a>
-</div>
-{{ form_end(form) }}
+    <div>
+        <ul>
+            <li>
+                <input class="waves-effect waves-light btn" type="submit" value="{{ 'registration.submit'|trans }}"/>
+                <a class="waves-effect waves-light btn" href="/../bauvorhaben/web/">Hauptmenü</a>
+            </li>
+        </ul>
+    </div>
+    {{ form_end(form) }}
+    {% else %}
+        <h4>Sie verfügen nicht über die nötigen Rechte, um diese Aktion auszuführen. Bitte wenden Sie sich an Ihren
+            Administrator.</h4>
+    {% endif %}

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Anfrage
  *
- * @ORM\Table(name="anfrage", uniqueConstraints={@ORM\UniqueConstraint(name="fk_user_id", columns={"fk_user_id"})})
+ * @ORM\Table(name="anfrage")
  * @ORM\Entity(repositoryClass="BauobjektBundle\Repository\AnfrageRepository")
  */
 class Anfrage
@@ -24,9 +24,10 @@ class Anfrage
     /**
      * @var string
      *
-     * @ORM\Column(name="Beschreibung", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Bestellung", type="string", length=255, nullable=false)
      */
-    private $beschreibung;
+    private $bestellung;
+
 
     /**
      * @var string
@@ -34,6 +35,14 @@ class Anfrage
      * @ORM\Column(name="Menge", type="string", length=255, nullable=false)
      */
     private $menge;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Bemerkung", type="string", length=255, nullable=true)
+     */
+    private $bemerkung = '-';
+
 
     /**
      * @var \BauobjektBundle\Entity\User
@@ -56,17 +65,17 @@ class Anfrage
     /**
      * @return string
      */
-    public function getBeschreibung()
+    public function getBestellung()
     {
-        return $this->beschreibung;
+        return $this->bestellung;
     }
 
     /**
-     * @param string $beschreibung
+     * @param string $bestellung
      */
-    public function setBeschreibung($beschreibung)
+    public function setBestellung($bestellung)
     {
-        $this->beschreibung = $beschreibung;
+        $this->bestellung = $bestellung;
     }
 
     /**
@@ -83,6 +92,22 @@ class Anfrage
     public function setMenge($menge)
     {
         $this->menge = $menge;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBemerkung()
+    {
+        return $this->bemerkung;
+    }
+
+    /**
+     * @param string $bemerkung
+     */
+    public function setBemerkung($bemerkung)
+    {
+        $this->bemerkung = $bemerkung;
     }
 
     /**
