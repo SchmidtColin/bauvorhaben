@@ -3,6 +3,7 @@
 namespace BauobjektBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Anfrage
@@ -49,10 +50,21 @@ class Anfrage
      *
      * @ORM\ManyToOne(targetEntity="BauobjektBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fk_user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="fk_user_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $fkUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Genehmigt", type="integer", nullable=false)
+     * @Assert\Range(
+     *     min="0",
+     *     max="2"
+     * )
+     */
+    private $genehmigt = 1;
 
     /**
      * @return int
@@ -111,6 +123,14 @@ class Anfrage
     }
 
     /**
+     * @return User
+     */
+    public function getFkUser()
+    {
+        return $this->fkUser;
+    }
+
+    /**
      * @param User $fkUser
      */
     public function setFkUser($fkUser)
@@ -119,11 +139,19 @@ class Anfrage
     }
 
     /**
-     * @return User
+     * @return int
      */
-    public function getFkUser()
+    public function getGenehmigt()
     {
-        return $this->fkUser;
+        return $this->genehmigt;
+    }
+
+    /**
+     * @param int $genehmigt
+     */
+    public function setGenehmigt($genehmigt)
+    {
+        $this->genehmigt = $genehmigt;
     }
 
 

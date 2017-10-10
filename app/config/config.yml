@@ -99,3 +99,9 @@ easy_admin:
                     - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
         Anfrage:
             class: BauobjektBundle\Entity\Anfrage
+            form:
+                fields:
+                    - bestellung
+                    - menge
+                    - bemerkung
+                    - { property: 'genehmigt', type: 'choice', type_options: { multiple: false, choices: { 'abgelehnt': 0, 'ausstehend': 1, 'genehmigt': 2 } } }

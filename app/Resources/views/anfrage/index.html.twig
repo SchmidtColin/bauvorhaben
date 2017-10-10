@@ -18,15 +18,16 @@
 
     <table>
         <thead>
-            <tr>
-                <th>Beschreibung</th>
-                <th>Menge</th>
-                <th>Bemerkung</th>
-                <th>Actions</th>
-                {% if is_granted('ROLE_ADMIN') %}
+        <tr>
+            <th>Beschreibung</th>
+            <th>Menge</th>
+            <th>Bemerkung</th>
+            <th>Actions</th>
+            {% if is_granted('ROLE_ADMIN') %}
                 <th>Benutzer</th>
-                {% endif %}
-            </tr>
+            {% endif %}
+            <th>Status</th>
+        </tr>
         </thead>
         <tbody>
         {% for anfrage in anfrages %}
@@ -42,7 +43,16 @@
                     </ul>
                 </td>
                 {% if is_granted('ROLE_ADMIN') %}
-                <td>{{ anfrage.fkUser }}</td>
+                    <td>{{ anfrage.fkUser }}</td>
+                {% endif %}
+                {% if anfrage.genehmigt == 0 %}
+                    <td style="color: red">abgelehnt</td>
+                {% elseif anfrage.genehmigt == 1 %}
+                    <td style="color: gray">ausstehend</td>
+                {% elseif anfrage.genehmigt == 2 %}
+                    <td style="color: green;">genehmigt</td>
+                {% else %}
+                    <td>Status nicht abrufbar!</td>
                 {% endif %}
             </tr>
         {% endfor %}
