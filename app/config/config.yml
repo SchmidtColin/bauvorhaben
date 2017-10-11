@@ -85,10 +85,16 @@ assetic:
         cssrewrite: ~
 
 easy_admin:
-    site_name: 'Benutzerverwaltung'
+    site_name: Benutzerverwaltung
+    design:
+        brand-color: '#4db6ac'
+    list:
+        title: Liste aller %%entity_label%%
     entities:
         User:
             class: BauobjektBundle\Entity\User
+            help: <a class="btn btn-primary action-new" href="./../">Zurück zur Homepage</a>
+            label: Benutzer
             form:
                 fields:
                     - username
@@ -99,6 +105,8 @@ easy_admin:
                     - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
         Anfrage:
             class: BauobjektBundle\Entity\Anfrage
+            help: <a class="btn btn-primary action-new" href="./../">Zurück zur Homepage</a>
+            label: Anfragen
             form:
                 fields:
                     - bestellung

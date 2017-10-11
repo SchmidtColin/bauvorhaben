@@ -10,12 +10,16 @@
 </head>
 <body>
 {% block body %}
-    <h4>Anfrage erstellen</h4>
+    <div style="margin: 10% 25% 10% 25%;">
+        <h4 style="margin-bottom: 50px;">Anfrage erstellen</h4>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input style="margin: 20px" class="waves-effect waves-light btn" type="submit" value="Create"/>
+        <a style="margin: 20px" class="waves-effect waves-light btn" href="/../bauvorhaben/web/">Hauptmenü</a>
+        {{ form_end(form) }}
+    </div>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input style="margin: 20px" class="waves-effect waves-light btn" type="submit" value="Create"/>
-    <a style="margin: 20px" class="waves-effect waves-light btn" href="/../bauvorhaben/web/">Hauptmenü</a>
-    {{ form_end(form) }}
+
+
 {% endblock %}
 </body>

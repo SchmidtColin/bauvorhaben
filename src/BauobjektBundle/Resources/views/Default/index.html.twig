@@ -4,7 +4,6 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('bundles/bauobjekt/web/index.css') }}">
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript"
@@ -36,7 +35,8 @@
                         Meine Anfragen
                         <span class="new badge">4</span></div>
                     <div class="collapsible-body">
-                        <div style="margin: 5px"><a style="cursor: pointer;" onclick="loadData('{{ path('anfrage_index') }}')"
+                        <div style="margin: 5px"><a style="cursor: pointer;"
+                                                    onclick="loadData('{{ path('anfrage_index') }}')"
                                                     class="collection-item">Übersicht</a>
                         </div>
                         <div style="margin: 5px"><a style="cursor: pointer;" href="{{ path('anfrage_new') }}"
@@ -46,34 +46,39 @@
                 </li>
             </ul>
 
-
             {% if is_granted('ROLE_ADMIN') %}
                 <h4>Administration</h4>
                 <ul class="collapsible" data-collapsible="expandable">
                     <li>
                         <div class="collapsible-header">
-                            <i class="material-icons">group</i>
-                            Benutzer
-                            <span class="new badge">4</span></div>
-                        <div class="collapsible-body"><a href="{{ path('easyadmin') }}"
-                                                         class="collection-item">Benutzer anlegen</a></div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">
                             <i class="material-icons">home</i>
-                            Bauobjekte
+                            Alle Bauobjekte
                             <span class="new badge">4</span></div>
                         <div class="collapsible-body"><a href="" class="collection-item">Übersicht</a></div>
                     </li>
                     <li>
                         <div class="collapsible-header">
                             <i class="material-icons">content_paste</i>
-                            Anfragen
+                            Alle Anfragen
                             <span class="new badge">4</span></div>
                         <div class="collapsible-body">
-                            <a style="cursor: pointer;" onclick="loadData('{{ path('anfrageAdmin_index') }}')" class="collection-item">Übersicht</a>
+                            <div style="margin: 5px"><a style="cursor: pointer;"
+                                                        onclick="loadData('{{ path('anfrageAdmin_index') }}')"
+                                                        class="collection-item">Übersicht</a>
+                            </div>
+                            <div style="margin: 5px"><a href="{{ path('easyadmin') }}"
+                                                        class="collection-item">Anfragen Verwalten</a>
+                            </div>
                         </div>
 
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">person</i>
+                            Benutzer
+                            <span class="new badge">4</span></div>
+                        <div class="collapsible-body"><a href="{{ path('easyadmin') }}"
+                                                         class="collection-item">Benutzer Verwalten</a></div>
                     </li>
                 </ul>
             {% endif %}
@@ -88,7 +93,9 @@
     </div>
 
     {% else %}
-    <a class="waves-effect waves-light btn" href="{{ path('fos_user_security_login') }}">Zum internen Bereich</a>
+    <div style="display: flex; flex-direction: row; justify-content: center;">
+        <a class="waves-effect waves-light btn" href="{{ path('fos_user_security_login') }}">Zum internen Bereich</a>
+    </div>
     {% endif %}
 
 

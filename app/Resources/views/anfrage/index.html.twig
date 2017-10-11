@@ -22,7 +22,6 @@
             <th>Beschreibung</th>
             <th>Menge</th>
             <th>Bemerkung</th>
-            <th>Actions</th>
             {% if is_granted('ROLE_ADMIN') %}
                 <th>Benutzer</th>
             {% endif %}
@@ -35,13 +34,6 @@
                 <td>{{ anfrage.bestellung }}</td>
                 <td>{{ anfrage.menge }}</td>
                 <td>{{ anfrage.bemerkung }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('anfrage_edit', { 'id': anfrage.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
                 {% if is_granted('ROLE_ADMIN') %}
                     <td>{{ anfrage.fkUser }}</td>
                 {% endif %}
